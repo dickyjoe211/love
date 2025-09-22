@@ -9,57 +9,91 @@
   --bg:#0f1724;
   --paper:#fff;
   --accent:#ff5c7c;
-  --size: 900px;
 }
-*{box-sizing:border-box}
-body{margin:0; font-family: Inter, system-ui, Arial; background: linear-gradient(180deg,#071024 0%, #0f1724 60%); color:#111; display:flex; align-items:center; justify-content:center; min-height:100vh}
-.container{width:100%; max-width:var(--size); padding:24px}
+*{box-sizing:border-box; margin:0; padding:0}
+body{
+  font-family: Inter, system-ui, Arial;
+  background: linear-gradient(180deg,#071024 0%, #0f1724 60%);
+  color:#111;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  padding:10px;
+}
+.container{width:100%; max-width:900px}
 
-.stage{position:relative; perspective:2200px; height:600px; display:flex; align-items:center; justify-content:center}
-.book{width:800px; height:520px; position:relative; transform-style:preserve-3d}
+h2{color:#fff; text-align:center; margin-bottom:12px}
 
-.leaf{position:absolute; left:50%; top:50%; width:400px; height:520px; transform-style:preserve-3d; transform-origin:left center; transition:transform 900ms cubic-bezier(.2,.9,.3,1);}
+.stage{
+  position:relative;
+  perspective:2200px;
+  width:100%;
+  max-width:800px;
+  margin:auto;
+}
+.book{
+  width:100%;
+  aspect-ratio: 16/10; /* biar proporsional */
+  position:relative;
+  transform-style:preserve-3d;
+}
+.leaf{
+  position:absolute;
+  left:50%; top:50%;
+  width:50%; height:100%;
+  transform-style:preserve-3d;
+  transform-origin:left center;
+  transition:transform 900ms cubic-bezier(.2,.9,.3,1);
+}
 .leaf.backside{transform-origin:right center}
 
-.leaf .side{position:absolute; width:100%; height:100%; overflow:hidden; backface-visibility:hidden; border-radius:6px; box-shadow:0 12px 30px rgba(2,6,23,0.55);}
+.leaf .side{
+  position:absolute; width:100%; height:100%;
+  overflow:hidden; backface-visibility:hidden;
+  border-radius:6px;
+  box-shadow:0 8px 20px rgba(2,6,23,0.45);
+}
 .leaf .front{background:var(--paper);}
-.leaf .back{background:linear-gradient(180deg,#fafafa,#f3f3f3); transform:rotateY(180deg)}
+.leaf .back{background:#f3f3f3; transform:rotateY(180deg)}
 
 .page{display:flex; flex-direction:column; height:100%;}
-.media{flex:1 1 auto; display:block; object-fit:cover; width:100%; height:60%;}
-.caption{padding:18px 20px; font-size:15px; color:#111}
-.title{font-weight:700; font-size:18px; margin-bottom:8px}
-.text{font-size:14px; line-height:1.45}
+.media{
+  flex:1 1 auto; width:100%; height:60%;
+  object-fit:cover; display:block;
+}
+.caption{padding:12px; font-size:14px; color:#111}
+.title{font-weight:700; font-size:16px; margin-bottom:6px}
+.text{font-size:13px; line-height:1.45}
 
 .leaf.l0{z-index:100; transform:translate(-50%,-50%)}
 .leaf.l1{z-index:90; transform:translate(-50%,-50%)}
 .leaf.l2{z-index:80; transform:translate(-50%,-50%)}
 .leaf.l3{z-index:70; transform:translate(-50%,-50%)}
-.leaf.l4{z-index:70; transform:translate(-50%,-50%)}
+.leaf.l4{z-index:60; transform:translate(-50%,-50%)}
 
 .leaf.turned{transform:translate(-50%,-50%) rotateY(-180deg)}
 
-.spine{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:4px; height:520px; background:linear-gradient(180deg,#e6e6e6,#cfcfcf); border-radius:2px; box-shadow: 0 0 20px rgba(0,0,0,0.25) inset}
-
-@media(max-width:900px){
-  :root{--size:700px}
-  .book{width:90%; height:420px}
-  .stage{height:480px}
-  .leaf{height:420px}
-  .media{height:58%}
+.spine{
+  position:absolute; left:50%; top:50%;
+  transform:translate(-50%,-50%);
+  width:4px; height:100%;
+  background:linear-gradient(180deg,#e6e6e6,#cfcfcf);
+  border-radius:2px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.25) inset
 }
-@media(max-width:520px){
-  body{padding:10px}
-  .book{width:100%; height:360px}
-  .stage{height:400px}
-  .leaf{width:48%; height:360px}
-  .media{height:60%}
+
+/* Responsive tweak */
+@media(max-width:600px){
+  .caption{font-size:12px}
+  .title{font-size:14px}
+  .text{font-size:12px}
 }
 </style>
 </head>
 <body>
 <div class="container">
-  <h2 style="color:#fff; text-align:center; margin:0 0 12px">Prettiest girl on earth</h2>
+  <h2>Prettiest girl on earth</h2>
 
   <div class="stage">
     <div class="book" id="book" aria-hidden="false">
@@ -102,16 +136,32 @@ body{margin:0; font-family: Inter, system-ui, Arial; background: linear-gradient
       </div>
 
       <!-- Leaf 3 -->
-      <div class="leaf l3" data-index="3">
-        <div class="side front page">
-          <img class="media" src="della/img/halaman2.jpg" alt="Foto 5">
-          <div class="caption"><div class="title">Momen</div><div class="text">Terima kasih sayang, untuk kebersamaan indah, terimakasih atas segala kerja keras dan keteguhan</div></div>
-        </div>
+<div class="leaf l3" data-index="3">
+  <div class="side front page">
+    <img class="media" src="della/img/halaman2.jpg" alt="Foto 5">
+    <div class="caption">
+      <div class="title">Momen</div>
+      <div class="text">
+        Terima kasih sayang, untuk kebersamaan indah, terimakasih atas segala kerja keras dan keteguhan
+      </div>
+    </div>
+  </div>
+</div>
 
-      <div class="leaf l4" data-index="4">
-        <div class="side front page">
-          <img class="media" src="della/img/last.jpg" alt="Foto 6">
-          <div class="caption"><div class="title">Proud</div><div class="text">Maaf ya kalau kamu harus bertemu aku dalam hidup ini, maaf kalau aku laki - laki yang gagal, terima kasih kamu menunjukan aku bagaimana dan seperti apa</div></div>
+<!-- Leaf 4 (Penutup) -->
+<div class="leaf l4" data-index="4">
+  <div class="side front page">
+    <img class="media" src="della/img/last.jpg" alt="Foto 6">
+    <div class="caption">
+      <div class="title">Proud</div>
+      <div class="text">
+        Maaf ya kalau kamu harus bertemu aku dalam hidup ini, maaf kalau aku laki-laki yang gagal,
+        terima kasih kamu menunjukan aku bagaimana dan seperti apa
+      </div>
+    </div>
+  </div>
+</div>
+
     </div>
   </div>
 </div>
@@ -119,30 +169,27 @@ body{margin:0; font-family: Inter, system-ui, Arial; background: linear-gradient
 <!-- SoundCloud Hidden Autoplay -->
 <iframe id="bgm" style="display:none;"
   src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/327026110&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false"
-  allow="autoplay">
-</iframe>
+  allow="autoplay"></iframe>
 
 <script src="https://w.soundcloud.com/player/api.js"></script>
-
 <script>
 (function(){
   const leaves = Array.from(document.querySelectorAll('.leaf'));
   const totalPages = leaves.length * 2;
   let currentPage = 1;
 
- function updateLeaves(){
-  const turnedLeaves = Math.floor((currentPage-1)/2);
-  leaves.forEach((leaf, idx) => {
-    if(idx < turnedLeaves){
-      leaf.classList.add('turned');
-      leaf.style.zIndex = 50 - idx; // turunkan z-index agar tidak menutupi leaf berikut
-    } else {
-      leaf.classList.remove('turned');
-      leaf.style.zIndex = 100 - idx; // naikkan z-index
-    }
-  });
-}
-
+  function updateLeaves(){
+    const turnedLeaves = Math.floor((currentPage-1)/2);
+    leaves.forEach((leaf, idx) => {
+      if(idx < turnedLeaves){
+        leaf.classList.add('turned');
+        leaf.style.zIndex = 50 - idx;
+      } else {
+        leaf.classList.remove('turned');
+        leaf.style.zIndex = 100 - idx;
+      }
+    });
+  }
   function goNext(){ if(currentPage < totalPages) currentPage++; updateLeaves(); }
   function goPrev(){ if(currentPage > 1) currentPage--; updateLeaves(); }
 
@@ -152,29 +199,19 @@ body{margin:0; font-family: Inter, system-ui, Arial; background: linear-gradient
     const x = e.clientX - rect.left;
     if(x > rect.width/2) goNext(); else goPrev();
   });
-
   window.addEventListener('keydown', e=>{
     if(e.key === 'ArrowRight') goNext();
     if(e.key === 'ArrowLeft') goPrev();
   });
-
   updateLeaves();
 
-  // SoundCloud Widget API
-  const iframe = document.getElementById('bgm');
-  const widget = SC.Widget(iframe);
-
-  widget.bind(SC.Widget.Events.READY, function() {
-    widget.play();
-  });
-
-  // Jika autoplay diblokir, mainkan setelah klik / scroll user
-  function enableSound() { widget.play(); window.removeEventListener('click', enableSound); window.removeEventListener('scroll', enableSound); }
+  // SoundCloud
+  const widget = SC.Widget(document.getElementById('bgm'));
+  widget.bind(SC.Widget.Events.READY, ()=>widget.play());
+  function enableSound(){ widget.play(); window.removeEventListener('click', enableSound); window.removeEventListener('scroll', enableSound);}
   window.addEventListener('click', enableSound);
   window.addEventListener('scroll', enableSound);
-
 })();
 </script>
 </body>
 </html>
-
